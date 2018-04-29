@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { SearchService } from './search.service';
+import { InspectBizService } from './inspect-biz.service';
 
 import { AppComponent } from './app.component';
 import { BusinessListComponent } from './components/businessList/component';
@@ -16,7 +16,7 @@ import { BusinessListComponent } from './components/businessList/component';
     BrowserModule,
     HttpClientModule,
   ],
-  providers: [SearchService],
+  providers: [InspectBizService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
