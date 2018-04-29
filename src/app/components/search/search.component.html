@@ -1,0 +1,11 @@
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<h2>Here are some links to help you start: </h2>
+
+<label for="search-businesses">Search</label>
+<input #input id="search-businesses"/>
+<button (click)="search(keyboardEvent)">Search</button>
+<business-list [businessList]="results"></business-list>
