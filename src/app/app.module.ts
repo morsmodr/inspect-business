@@ -1,18 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { SearchService } from './search.service';
 
 import { AppComponent } from './app.component';
+import { BusinessListComponent } from './components/businessList/component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BusinessListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
