@@ -42,7 +42,8 @@ ngAfterViewInit() {
     this.keyUpSub = Observable.fromEvent(this.searchInput.nativeElement, 'keyup')
       .debounceTime(1000)
       .subscribe((keyboardEvent) => {
-        this.results = this.inspectBiz.search(keyboardEvent['target'].value);
+      //  this.results = 
+        //this.inspectBiz.search(keyboardEvent['target'].value);
         console.log(keyboardEvent);
         console.log(this.businesses);
         this.search(keyboardEvent);
