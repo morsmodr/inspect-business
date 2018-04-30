@@ -1,3 +1,25 @@
-<p>
-  business-detail works!
-</p>
+
+<div class=business-container>
+  <div class="business-header">
+    <div>
+      Business Name: {{businessInfo.aka_name}}
+    </div>
+    <div>
+      Busines Type: {{businessInfo.facility_type}}
+    </div>
+  </div>
+  <div class="business-content">
+    <div class="business-content-main">
+      <div>Inspection type: {{businessInfo.inspection_type}}</div>
+      <div>Result: {{businessInfo.results}}</div>
+      <div>Risk Level: {{businessInfo.risk}}</div>
+      <div>Inspection Date: {{businessInfo.inspection_date}}</div>
+      <div>Violations:</div>
+      <div>{{businessInfo.violations}}</div>
+    </div>
+    <div class="business-content-aside">
+      <div id="map"></div>
+    </div>
+  </div>
+
+</div>

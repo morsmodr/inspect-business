@@ -1,10 +1,11 @@
 import { Component, NgZone, ViewChild, ElementRef,
   ChangeDetectorRef, ApplicationRef, OnInit } from '@angular/core';
-  import { Observable } from 'rxjs/Observable';
-  import 'rxjs/add/operator/debounceTime';
-  import 'rxjs/add/observable/fromEvent';
-  import { InspectBizService } from '../../inspect-biz.service';
-  import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/observable/fromEvent';
+import { InspectBizService } from '../../inspect-biz.service';
+import { Subscription } from 'rxjs/Subscription';
+import { PropertyList } from '../../property-list';
 
 @Component({
   selector: 'app-search',
@@ -25,23 +26,55 @@ export class SearchComponent implements OnInit {
       this._inspectBizService.getBiz().subscribe(
         (data: any[]) => {
           if(this.businesses != null) {
-            this.businesses = data;
-            console.log(this.businesses);
-          } else {
-            console.log("Service call not made");
+            this.businesses = this.processData(data);
           }
         },
         err => console.error(err),
         () => console.log('done loading businesses')
       );
+      let cachedResults = JSON.parse(localStorage.getItem('searchResults'));
+      if(cachedResults && cachedResults.length != 0) {
+        this.results = cachedResults;
+      }
     }
 
+  processData(data) {
+    return data.map((obj) => {
+
+      if(typeof(obj.violations) != "undefined"){
+
+        let violationsList = obj.violations.split('|').map((violation) => {
+
+          if(typeof(violation) != "undefined"){
+            let violationObject = violation.split("Comments:");
+            return {
+              violationName: violationObject[0] ? violationObject[0] : undefined,
+              violationComment: violationObject[1] ? violationObject[1] : undefined
+            }
+          } else {
+            return null;
+          }
+        });
+        return Object.assign({}, obj, { violationsList: violationsList });
+
+      } else {
+        return Object.assign({}, obj, { violationsList: null });;
+      }
+    });
+  }
+
   ngAfterViewInit() {
+    if(this.results.length != 0) {
+      let cachedSearchTerm = localStorage.getItem('searchTerm');
+      if(cachedSearchTerm && cachedSearchTerm.length != 0) {
+        this.searchInput.nativeElement.value = cachedSearchTerm;
+      }
+    }
+
     this.ngzone.runOutsideAngular( () => {
       this.keyUpSub = Observable.fromEvent(this.searchInput.nativeElement, 'keyup')
         .debounceTime(1000)
         .subscribe((keyboardEvent) => {
-          console.log(this.businesses);
           this.search(keyboardEvent);
           this.cdref.detectChanges();
         });
@@ -55,19 +88,17 @@ export class SearchComponent implements OnInit {
       } else {
         this.results = this.businesses
           .filter((obj) =>
-            Object.keys(obj).some((key) => {
+            PropertyList.some((key) => {
               if(typeof(obj[key]) === "string") {
-                return obj[key].includes(inputValue);
+                return obj[key].toLowerCase().includes(inputValue.toLowerCase());
               } else {
                 return false;
               }
             })
           );
         }
-    }
-
-    ngOnDestroy() {
-      this.keyUpSub.unsubscribe();
+        localStorage.setItem('searchResults', JSON.stringify(this.results));
+        localStorage.setItem('searchTerm', inputValue);
     }
 
 }

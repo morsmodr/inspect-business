@@ -1,11 +1,18 @@
 <ul>
   <li *ngFor="let business of businessList">
-    <a routerLink="/detail/{{business.inspection_id}}" class="business-container">
+    <div class="business-container">
       <div class="business-heading">
         <div class="business-name">{{business.aka_name}}</div>
         <div class="business-type">{{business.facility_type}}</div>
       </div>
-      <div class="business-content">{{business.violations}}</div>
-    </a>
+      <div class="inspection-summary">
+        <div>Inspection type: {{business.inspection_type}}</div>
+        <div class="inspection-summary-result">{{business.results}}</div>
+        <div *ngIf="business.violationsList !== null" class="inspection-summary-count">
+          Violations: {{business.violationsList?.length}}
+        </div>
+      </div>
+      <button (click)="showDetailView(business)">Learn more</button>
+    </div>
   </li>
 </ul>
