@@ -1,18 +1,19 @@
-<ul>
-  <li *ngFor="let business of businessList">
+<ul class="business-list-container">
+  <li class="business-list-inner" *ngFor="let business of businessList">
     <div class="business-container">
       <div class="business-heading">
         <div class="business-name">{{business.aka_name}}</div>
         <div class="business-type">{{business.facility_type}}</div>
       </div>
-      <div class="inspection-summary">
+      <div class="business-inspection-summary">
         <div>Inspection type: {{business.inspection_type}}</div>
-        <div class="inspection-summary-result">{{business.results}}</div>
-        <div *ngIf="business.violationsList !== null" class="inspection-summary-count">
+        <div class="business-inspection-summary-result">{{business.results}}</div>
+        <div *ngIf="business.violationsList !== null" class="business-inspection-summary-count">
           Violations: {{business.violationsList?.length}}
         </div>
+        <button class="business-inspection-summary-button" (click)="showDetailView(business)">Learn more</button>
       </div>
-      <button (click)="showDetailView(business)">Learn more</button>
+
     </div>
   </li>
 </ul>

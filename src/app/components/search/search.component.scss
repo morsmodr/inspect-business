@@ -1,0 +1,39 @@
+@import "../../../sass/_variables.scss";
+
+.search {
+  margin: $gap-half;
+
+  &-header {
+    font-family: $serif-font;
+    text-align: center;
+  }
+
+  &-container {
+    margin: $gap;
+  }
+
+  &-input {
+    font: $font-normal $sans-serif-font;
+    padding-bottom: $gap;
+
+    &-label {
+      display: none;
+    }
+
+    &-box {
+      width: 45%;
+      padding: $gap-tiny;
+      border-radius: $gap-tiny/2;
+      border: solid 1px;
+      margin-right: $gap-third;
+    }
+
+    &-button {
+      padding: $gap-tiny;
+      border-radius: $gap-tiny/2;
+      background-color: $blue;
+      width: 10%;
+      border: none;
+    }
+  }
+}

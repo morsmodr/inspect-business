@@ -1,0 +1,59 @@
+@import "../../../sass/_variables.scss";
+
+.business {
+
+  &-list {
+
+    &-container {
+      list-style-type: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+
+      .business-container {
+        margin-bottom: $gap-third;
+        border: solid 1px;
+        height: 240px;
+        width: 240px;
+      }
+    }
+
+    &-inner {
+      flex: 1;
+      margin: $gap-tiny;
+    }
+  }
+
+
+  &-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: $serif-font;
+    margin-bottom: $gap-third;
+    border-bottom: solid 1px;
+    padding: $gap-tiny;
+    height: 60px;
+  }
+
+  &-type {
+    font-style: italic;
+    font-family: $sans-serif-font;
+  }
+
+  &-inspection-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: $gap-tiny;
+    font-family: $sans-serif-font;
+    height: 120px;
+
+    &-button {
+      padding: $gap-tiny;
+      border-radius: $gap-tiny/2;
+      background-color: $blue;
+      border: none;
+    }
+  }
+}
