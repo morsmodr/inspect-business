@@ -5,21 +5,32 @@
       Business Name: {{businessInfo.aka_name}}
     </div>
     <div>
-      Busines Type: {{businessInfo.facility_type}}
+      Business Type: {{businessInfo.facility_type}}
     </div>
   </div>
   <div class="business-content">
     <div class="business-content-main">
-      <div>Inspection type: {{businessInfo.inspection_type}}</div>
-      <div>Result: {{businessInfo.results}}</div>
-      <div>Risk Level: {{businessInfo.risk}}</div>
-      <div>Inspection Date: {{businessInfo.inspection_date}}</div>
-      <div>Violations:</div>
-      <div>{{businessInfo.violations}}</div>
+      <div class="business-content-main-summary">
+        <div class="business-content-detail">Inspection type: {{businessInfo.inspection_type}}</div>
+        <div class="business-content-detail">Result: {{businessInfo.results}}</div>
+        <div class="business-content-detail">Risk Level: {{businessInfo.risk}}</div>
+        <div class="business-content-detail">Inspection Date: {{businessInfo.inspection_date}}</div>
+        <div class="business-content-detail">Address: {{businessInfo.address}}, {{businessInfo.city}} {{businessInfo.zip}}</div>
+      </div>
+      <div class="business-content-main-map">
+        <div id="map"></div>
+      </div>
     </div>
-    <div class="business-content-aside">
-      <div id="map"></div>
+    <div class="business-content-violations" *ngIf="businessInfo.violationsList">
+      Violations:
+      <ul *ngFor="let violation of businessInfo.violationsList" class="violations-container">
+        <li class="violation-item">
+          <div class="violation-item-name">{{violation!.violationName}}</div>
+          <div class="violation-item-comment">{{violation!.violationComment}}</div>
+        </li>
+      </ul>
     </div>
+
   </div>
 
 </div>

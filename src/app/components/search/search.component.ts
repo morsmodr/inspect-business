@@ -48,8 +48,8 @@ export class SearchComponent implements OnInit {
           if(typeof(violation) != "undefined"){
             let violationObject = violation.split("Comments:");
             return {
-              violationName: violationObject[0] ? violationObject[0] : undefined,
-              violationComment: violationObject[1] ? violationObject[1] : undefined
+              violationName: violationObject[0] ? this.capitalizeFirstLetter(violationObject[0].toLowerCase()) : undefined,
+              violationComment: violationObject[1] ? this.capitalizeFirstLetter(violationObject[1].toLowerCase()) : undefined
             }
           } else {
             return null;
@@ -61,6 +61,10 @@ export class SearchComponent implements OnInit {
         return Object.assign({}, obj, { violationsList: null });;
       }
     });
+  }
+
+  capitalizeFirstLetter(violationString) {
+    return violationString.charAt(0).toUpperCase() + violationString.slice(1);
   }
 
   ngAfterViewInit() {
