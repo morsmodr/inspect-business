@@ -28,5 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 There has been a conscious choice made to use a reference to the DOM directly in the app component. This is not recommended as it creates a tight coupling between the code and UI.
 
-Yet I am ok with this decision because our app is going to be in electron. When we are already going to run inside an chrome engine we might as well utilize quick access to 
+Yet I am ok with this decision because our app is going to be in electron. When we are already going to run inside an chrome engine we might as well utilize quick access to
 DOM in code in the interest of time.
+
+State is being managed using Local Storage which isn't an ideal solution. This should be managed by a store using ngrx which implements redux with rxjs. Or a shared service should equally do the job.
