@@ -14,7 +14,7 @@
         <div class="business-content-detail">Inspection type: {{businessInfo.inspection_type}}</div>
         <div class="business-content-detail">Result: {{businessInfo.results}}</div>
         <div class="business-content-detail">Risk Level: {{businessInfo.risk}}</div>
-        <div class="business-content-detail">Inspection Date: {{businessInfo.inspection_date}}</div>
+        <div class="business-content-detail">Inspection Date: {{businessInfo.inspection_date | date:'mediumDate'}}</div>
         <div class="business-content-detail">Address: {{businessInfo.address}}, {{businessInfo.city}} {{businessInfo.zip}}</div>
       </div>
       <div class="business-content-main-map">

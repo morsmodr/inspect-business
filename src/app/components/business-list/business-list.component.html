@@ -1,4 +1,4 @@
-<ul class="business-list-container">
+<ul *ngIf="businessList" class="business-list-container">
   <li class="business-list-inner" *ngFor="let business of businessList">
     <div class="business-container">
       <div class="business-heading">
@@ -7,7 +7,7 @@
       </div>
       <div class="business-inspection-summary">
         <div>Inspection type: {{business.inspection_type}}</div>
-        <div class="business-inspection-summary-result">{{business.results}}</div>
+        <div class="business-inspection-summary-result">Result: {{business.results}}</div>
         <div *ngIf="business.violationsList !== null" class="business-inspection-summary-count">
           Violations: {{business.violationsList?.length}}
         </div>

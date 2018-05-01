@@ -6,6 +6,8 @@ import 'rxjs/add/observable/fromEvent';
 import { InspectBizService } from '../../inspect-biz.service';
 import { Subscription } from 'rxjs/Subscription';
 import { PropertyList } from '../../property-list';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-search',
@@ -20,7 +22,9 @@ export class SearchComponent implements OnInit {
   @ViewChild('input') searchInput: ElementRef;
 
   constructor(private _inspectBizService: InspectBizService, private ngzone: NgZone,
-    private cdref: ChangeDetectorRef, private appref: ApplicationRef) { }
+    private cdref: ChangeDetectorRef, private appref: ApplicationRef) {
+
+    }
 
     ngOnInit() {
       this._inspectBizService.getBiz().subscribe(
@@ -86,7 +90,7 @@ export class SearchComponent implements OnInit {
     }
 
     search(keyboardEvent) {
-      let inputValue = keyboardEvent.target.value;
+      let inputValue = this.searchInput.nativeElement.value;
       if(inputValue.length === 0) {
         this.results = [];
       } else {

@@ -55,5 +55,9 @@
       background-color: $blue;
       border: none;
     }
+
+    &-result {
+      font-weight: $font-weight-bold;
+    }
   }
 }

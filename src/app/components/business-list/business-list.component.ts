@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'business-list',
@@ -10,7 +10,9 @@ export class BusinessListComponent implements OnInit {
 
   @Input() public businessList;
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router) {
+
+  }
 
   ngOnInit() {
 
@@ -18,8 +20,9 @@ export class BusinessListComponent implements OnInit {
 
   showDetailView(business) {
     localStorage.setItem('currentBusiness', JSON.stringify(business));
+    this._router.navigate(['/detail', business.inspection_id]);
     setTimeout(() => {
-      this._router.navigate(['/detail', business.inspection_id]);
-    }, 1000);
+
+    }, 2000);
   }
 }
